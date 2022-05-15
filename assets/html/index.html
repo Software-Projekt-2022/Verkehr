@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST TITLE</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <table class="table" id="firstpanel">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Nummer</th>
+                <th scope="col">PLZ</th>
+                <th scope="col">ABC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="user in benutzer">    
+              <th scope="row">{{user.id}}</th>
+              <th>{{user.name}}</th>
+              <th>{{user.nummer}}</th>   
+              <th>{{user.plz}}</th>   
+              <th>{{user.abc}}</th>
+              <th><button @click="deleteUser(user.id)">Delete User</button></th> 
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    
+
+    <script src="assets/scripts/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
