@@ -71,6 +71,8 @@ jobs:
           envs: IMAGE_NAME,REGISTRY,{{ secrets.DO_ACCESS }},GITHUB_SHA
           script: |
             # Stop docker
+            cd ~/docker
+            docker-compose stop
             
       - name: Start docker (deploy this)
         uses: appleboy/ssh-action@v0.1.3
