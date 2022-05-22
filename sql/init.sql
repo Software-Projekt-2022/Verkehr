@@ -5,8 +5,7 @@ CREATE TABLE Lots (
 	AddresseID INT,
 	Preis varchar(255),
 	Oeffnungszeiten varchar(255),
-	PRIMARY KEY (LotID),
-	FOREIGN KEY (AddresseID) REFERENCES Addressen(AddresseID)
+	PRIMARY KEY (LotID)
 );
 
 CREATE TABLE Addressen (
@@ -15,8 +14,7 @@ CREATE TABLE Addressen (
 	Hausnummer varchar(255),
 	Plz INT,
 	KoordinateID INT,
-	PRIMARY KEY (AddresseID),
-	FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
+	PRIMARY KEY (AddresseID)
 );
 
 CREATE TABLE Koordinaten (
@@ -28,12 +26,11 @@ CREATE TABLE Koordinaten (
 
 
 CREATE TABLE Plaetze (
-	PlatzID INT NOT NULL AUTO_INCREMENT,
+	LadesaeuleID INT NOT NULL AUTO_INCREMENT,
 	Groesse varchar(255),
 	KoordinateID INT,
 	P_status INT,
-	PRIMARY KEY (PlatzID),
-	FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
+	PRIMARY KEY (PlatzID)
 );
 
 CREATE TABLE Ladesaeulen (
@@ -41,9 +38,7 @@ CREATE TABLE Ladesaeulen (
 	PlatzID INT,
 	L_status INT,
 	BetriebID INT,
-	PRIMARY KEY (LadesaeuleID),
-	FOREIGN KEY (PlatzID) REFERENCES Plaetze(PlatzID),
-	FOREIGN KEY (BetriebID) REFERENCES Betreiber(BetriebID)
+	PRIMARY KEY (LadesaeuleID)
 );
 
 CREATE TABLE Betreiber (
@@ -52,9 +47,7 @@ CREATE TABLE Betreiber (
 	AddresseID INT,
 	Gewerbe_typ INT,
 	KoordinateID INT,
-	PRIMARY KEY (BetriebID),
-	FOREIGN KEY (AddesseID) REFERENCES Addressen(AddresseID),
-	FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
+	PRIMARY KEY (BetriebID)
 );
 
 CREATE TABLE Spritpreise (
@@ -63,17 +56,14 @@ CREATE TABLE Spritpreise (
 	Spritsorte varchar(255),
 	BetriebID INT,
 	erzeugt_am DATETIME DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (SpritpreisID),
-	FOREIGN KEY (BetriebID) REFERENCES Betreiber(BetriebID)
+	PRIMARY KEY (SpritpreisID)
 );
 
 CREATE TABLE Fahrer (
 	FahrerID INT NOT NULL AUTO_INCREMENT,
 	BetriebID INT,
 	SonderUserID INT,
-	PRIMARY KEY (FahrerID),
-	FOREIGN KEY (BetriebID) REFERENCES Betreiber(BetriebID),
-	FOREIGN KEY (SonderUserID) REFERENCES SonderUser(SonderUserID)
+	PRIMARY KEY (FahrerID)
 );
 
 CREATE TABLE SonderUser (
@@ -91,26 +81,20 @@ CREATE TABLE Neuigkeiten (
 	Meldezeit DATETIME DEFAULT CURRENT_TIMESTAMP,
 	Art INT,
 	Beschreibung varchar(255),
-	PRIMARY KEY (NeuigkeitID),
-	FOREIGN KEY (AddresseID) REFERENCES Addressen(AddresseID),
-	FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID),
-	FOREIGN KEY (SonderUserID) REFERENCES SonderUser(SonderUserID)
+	PRIMARY KEY (NeuigkeitID)
 );
 
 CREATE TABLE Fahrzeuge (
 	FahrzeugID INT NOT NULL AUTO_INCREMENT,
 	FahrerID INT,
 	Modell varchar(255),
-	Fahrzeug_alter INT,
+	Baujahr DATE DEFAULT,
 	Letzte_wartung DATETIME,
 	Naechste_wartung DATETIME,
 	in_betrieb INT,
 	RouteID INT,
 	HaltestelleID INT,
-	PRIMARY KEY (FahrzeugID),
-	FOREIGN KEY (FahrerID) REFERENCES Fahrer(FahrerID),
-	FOREIGN KEY (RouteID) REFERENCES Routen(RouteID),
-	FOREIGN KEY (HaltestelleID) REFERENCES Haltestellen(HaltestelleID)
+	PRIMARY KEY (FahrzeugID)
 );
 
 CREATE TABLE Route (
@@ -124,8 +108,7 @@ CREATE TABLE Haltestellen (
 	HaltestelleID INT NOT NULL AUTO_INCREMENT,
 	KoordinateID INT,
 	Strasse varchar(255),
-	PRIMARY KEY (HaltestelleID),
-	FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
+	PRIMARY KEY (HaltestelleID)
 );
 
 CREATE TABLE Routen_Haltestellen (
@@ -139,3 +122,106 @@ CREATE TABLE Routen_Haltestellen (
 	FOREIGN KEY (StartID) REFERENCES Haltestellen(HaltestelleID),
 	FOREIGN KEY (ZielID) REFERENCES Haltestellen(HaltestelleID)
 );
+
+ALTER Table Lots 
+ADD CONSTRAINT AddresseID 
+FOREIGN KEY (AddresseID) REFERENCES Addressen(AddresseID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Addressen 
+ADD CONSTRAINT KoordinateID 
+FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Plaetze 
+ADD CONSTRAINT KoordinateID 
+FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Ladesaeulen 
+ADD CONSTRAINT PlatzID 
+FOREIGN KEY (PlatzID) REFERENCES Plaetze(PlatzID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Ladesaeulen 
+ADD CONSTRAINT BetriebID 
+FOREIGN KEY (BetriebID) REFERENCES Betreiber(BetriebID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Betreiber
+ADD CONSTRAINT AddresseID 
+FOREIGN KEY (AddesseID) REFERENCES Addressen(AddresseID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Betreiber 
+ADD CONSTRAINT KoordinateID 
+FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Spritpreise 
+ADD CONSTRAINT BetriebID 
+FOREIGN KEY (BetriebID) REFERENCES Betreiber(BetriebID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Fahrer 
+ADD CONSTRAINT BetriebID 
+FOREIGN KEY (BetriebID) REFERENCES Betreiber(BetriebID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Fahrer
+ADD CONSTRAINT SonderUserID 
+FOREIGN KEY (SonderUserID) REFERENCES SonderUser(SonderUserID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Neuigkeiten 
+ADD CONSTRAINT AddresseID 
+FOREIGN KEY (AddresseID) REFERENCES Addressen(AddresseID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Neuigkeiten
+ADD CONSTRAINT KoordinateID 
+FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Neuigkeiten 
+ADD CONSTRAINT SonderUserID 
+FOREIGN KEY (SonderUserID) REFERENCES SonderUser(SonderUserID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Fahrzeuge 
+ADD CONSTRAINT FahrerID 
+FOREIGN KEY (FahrerID) REFERENCES Fahrer(FahrerID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Fahrzeuge
+ADD CONSTRAINT RouteID 
+FOREIGN KEY (RouteID) REFERENCES Routen(RouteID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Fahrzeuge 
+ADD CONSTRAINT HaltestelleID 
+FOREIGN KEY (HaltestelleID) REFERENCES Haltestellen(HaltestelleID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
+ALTER Table Haltestellen 
+ADD CONSTRAINT KoordinateID 
+FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
+
