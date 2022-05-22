@@ -118,7 +118,7 @@ CREATE TABLE Routen_Haltestellen (
     Anfahrt TIME,
     Abfahrt TIME,
     Fahrzeit TIME,
-    PRIMARY KEY (RouteID, StartID, ZielID)
+    PRIMARY KEY (RH_RouteID, RH_StartID, RH_ZielID)
 );
 
 ALTER TABLE Routen_Haltestellen
