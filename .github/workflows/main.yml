@@ -39,6 +39,20 @@ jobs:
       - name: Push image to DigitalOcean Container Registry
         run: docker push $(echo $REGISTRY)/$(echo $IMAGE_NAME)
 
+  transfer_sql_script:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Deploy sql script
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -azvr --delete
+          path: Data-Base-Statements.txt
+          remote_path: ~/verkehr/init.sql
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_KEY}}
+          remote_key_pass: ${{ secrets.SSH_PASSPHRASE }}
   deploy:
     runs-on: ubuntu-20.04
     needs: build_and_push
