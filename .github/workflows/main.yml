@@ -41,8 +41,10 @@ jobs:
 
   transfer_sql_script:
     runs-on: ubuntu-20.04
+    
 
     steps:
+      - uses: actions/checkout@v2
       - name: Deploy sql script
         uses: burnett01/rsync-deployments@5.2
         with:
