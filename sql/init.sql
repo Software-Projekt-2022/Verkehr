@@ -88,7 +88,7 @@ CREATE TABLE Fahrzeuge (
 	FahrzeugID INT NOT NULL AUTO_INCREMENT,
 	FahrerID INT,
 	Modell varchar(255),
-	Baujahr DATE DEFAULT,
+	Baujahr DATE,
 	Letzte_wartung DATETIME,
 	Naechste_wartung DATETIME,
 	in_betrieb INT,
