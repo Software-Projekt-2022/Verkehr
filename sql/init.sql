@@ -5,7 +5,8 @@ CREATE TABLE Lots (
 	AddresseID INT,
 	Preis varchar(255),
 	Oeffnungszeiten varchar(255),
-	PRIMARY KEY (LotID)
+	PRIMARY KEY (LotID),
+	FOREIGN KEY (AddresseID) REFERENCES Addressen(AddresseID)
 );
 
 CREATE TABLE Addressen (
@@ -14,7 +15,8 @@ CREATE TABLE Addressen (
 	Hausnummer varchar(255),
 	Plz INT,
 	KoordinateID INT,
-	PRIMARY KEY (AddresseID)
+	PRIMARY KEY (AddresseID),
+	FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
 );
 
 CREATE TABLE Koordinaten (
@@ -30,7 +32,8 @@ CREATE TABLE Plaetze (
 	Groesse varchar(255),
 	KoordinateID INT,
 	P_status INT,
-	PRIMARY KEY (PlatzID)
+	PRIMARY KEY (PlatzID),
+	FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
 );
 
 CREATE TABLE Ladesaeulen (
@@ -38,7 +41,9 @@ CREATE TABLE Ladesaeulen (
 	PlatzID INT,
 	L_status INT,
 	BetriebID INT,
-	PRIMARY KEY (LadesaeuleID)
+	PRIMARY KEY (LadesaeuleID),
+	FOREIGN KEY (PlatzID) REFERENCES Plaetze(PlatzID),
+	FOREIGN KEY (BetriebID) REFERENCES Betreiber(BetriebID)
 );
 
 CREATE TABLE Betreiber (
@@ -47,7 +52,9 @@ CREATE TABLE Betreiber (
 	AddresseID INT,
 	Gewerbe_typ INT,
 	KoordinateID INT,
-	PRIMARY KEY (BetriebID)
+	PRIMARY KEY (BetriebID),
+	FOREIGN KEY (AddesseID) REFERENCES Addressen(AddresseID),
+	FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
 );
 
 CREATE TABLE Spritpreise (
@@ -56,14 +63,17 @@ CREATE TABLE Spritpreise (
 	Spritsorte varchar(255),
 	BetriebID INT,
 	erzeugt_am DATETIME DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (SpritpreisID)
+	PRIMARY KEY (SpritpreisID),
+	FOREIGN KEY (BetriebID) REFERENCES Betreiber(BetriebID)
 );
 
 CREATE TABLE Fahrer (
 	FahrerID INT NOT NULL AUTO_INCREMENT,
 	BetriebID INT,
 	SonderUserID INT,
-	PRIMARY KEY (FahrerID)
+	PRIMARY KEY (FahrerID),
+	FOREIGN KEY (BetriebID) REFERENCES Betreiber(BetriebID),
+	FOREIGN KEY (SonderUserID) REFERENCES SonderUser(SonderUserID)
 );
 
 CREATE TABLE SonderUser (
@@ -81,7 +91,10 @@ CREATE TABLE Neuigkeiten (
 	Meldezeit DATETIME DEFAULT CURRENT_TIMESTAMP,
 	Art INT,
 	Beschreibung varchar(255),
-	PRIMARY KEY (NeuigkeitID)
+	PRIMARY KEY (NeuigkeitID),
+	FOREIGN KEY (AddresseID) REFERENCES Addressen(AddresseID),
+	FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID),
+	FOREIGN KEY (SonderUserID) REFERENCES SonderUser(SonderUserID)
 );
 
 CREATE TABLE Fahrzeuge (
@@ -94,7 +107,10 @@ CREATE TABLE Fahrzeuge (
 	in_betrieb INT,
 	RouteID INT,
 	HaltestelleID INT,
-	PRIMARY KEY (FahrzeugID)
+	PRIMARY KEY (FahrzeugID),
+	FOREIGN KEY (FahrerID) REFERENCES Fahrer(FahrerID),
+	FOREIGN KEY (RouteID) REFERENCES Routen(RouteID),
+	FOREIGN KEY (HaltestelleID) REFERENCES Haltestellen(HaltestelleID)
 );
 
 CREATE TABLE Route (
@@ -108,7 +124,8 @@ CREATE TABLE Haltestellen (
 	HaltestelleID INT NOT NULL AUTO_INCREMENT,
 	KoordinateID INT,
 	Strasse varchar(255),
-	PRIMARY KEY (HaltestelleID)
+	PRIMARY KEY (HaltestelleID),
+	FOREIGN KEY (KoordinateID) REFERENCES Koordinaten(KoordinateID)
 );
 
 CREATE TABLE Routen_Haltestellen (
@@ -117,5 +134,8 @@ CREATE TABLE Routen_Haltestellen (
 	ZielID INT,
 	Anfahrt TIME,
 	Abfahrt TIME,
-	Fahrzeit TIME
+	Fahrzeit TIME,
+	FOREIGN KEY (RouteID) REFERENCES Routen(RouteID),
+	FOREIGN KEY (StartID) REFERENCES Haltestellen(HaltestelleID),
+	FOREIGN KEY (ZielID) REFERENCES Haltestellen(HaltestelleID)
 );
