@@ -83,4 +83,5 @@ jobs:
           script: |
             # Stop docker
             cd ~/docker
+            docker-compose pull
             docker-compose up -d --force-recreate
