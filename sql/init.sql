@@ -26,7 +26,7 @@ CREATE TABLE Koordinaten (
 
 
 CREATE TABLE Plaetze (
-	LadesaeuleID INT NOT NULL AUTO_INCREMENT,
+	PlatzID INT NOT NULL AUTO_INCREMENT,
 	Groesse varchar(255),
 	KoordinateID INT,
 	P_status INT,
