@@ -1,3 +1,5 @@
+USE verkehr;
+
 CREATE TABLE Lots (
 	LotID INT NOT NULL AUTO_INCREMENT,
 	AddresseID INT,
