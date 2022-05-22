@@ -80,7 +80,7 @@ CREATE TABLE SonderUser (
 	SonderUserID INT NOT NULL AUTO_INCREMENT,
 	Username varchar(255),
 	U_status INT,
-	PRIMARY KEY (SonderUserID),
+	PRIMARY KEY (SonderUserID)
 );
 
 CREATE TABLE Neuigkeiten (
@@ -101,7 +101,7 @@ CREATE TABLE Fahrzeuge (
 	FahrzeugID INT NOT NULL AUTO_INCREMENT,
 	FahrerID INT,
 	Modell varchar(255),
-	Alter INT,
+	Fahrzeug_alter INT,
 	Letzte_wartung DATETIME,
 	Naechste_wartung DATETIME,
 	in_betrieb INT,
