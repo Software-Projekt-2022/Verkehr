@@ -112,16 +112,23 @@ CREATE TABLE Haltestellen (
 );
 
 CREATE TABLE Routen_Haltestellen (
-	RouteID INT,
-	StartID INT,
-	ZielID INT,
-	Anfahrt TIME,
-	Abfahrt TIME,
-	Fahrzeit TIME,
-	FOREIGN KEY (RouteID) REFERENCES Routen(RouteID),
-	FOREIGN KEY (StartID) REFERENCES Haltestellen(HaltestelleID),
-	FOREIGN KEY (ZielID) REFERENCES Haltestellen(HaltestelleID)
+    RouteID INT,
+    StartID INT,
+    ZielID INT,
+    Anfahrt TIME,
+    Abfahrt TIME,
+    Fahrzeit TIME,
+    PRIMARY KEY (RouteID, StartID, ZielID),
+    FOREIGN KEY (RouteID) REFERENCES Routen(RouteID),
+    FOREIGN KEY (StartID) REFERENCES Haltestellen(HaltestelleID),
+    FOREIGN KEY (ZielID) REFERENCES Haltestellen(HaltestelleID)
 );
+
+AlTER TABLE Routen_Haltestellen
+ADD CONSTRAINT AddresseID 
+FOREIGN KEY (RouteID) REFERENCES Routen(RouteID)
+	ON DELETE SET NULL
+	ON UPDATE SET NULL;
 
 ALTER Table Lots 
 ADD CONSTRAINT AddresseID 
