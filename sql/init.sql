@@ -123,7 +123,7 @@ CREATE TABLE Routen_Haltestellen (
 
 ALTER TABLE Routen_Haltestellen
 ADD CONSTRAINT RouteID 
-FOREIGN KEY (RouteID) REFERENCES Routen(RouteID),
+FOREIGN KEY (RouteID) REFERENCES Routen(RouteID)
     ON DELETE SET NULL
     ON UPDATE SET NULL;
 
