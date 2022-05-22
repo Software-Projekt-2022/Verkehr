@@ -6,10 +6,10 @@ const io = require("socket.io")(server);
 
 const mysql = require('mysql');
 const mysql_connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'test123'
+    host: 'verkehrdb:3306',
+    user: 'verkehr',
+    password: 'verkehrpw12345',
+    database: 'verkehr'
 });
 
 // CONNECT TO MYSQL
