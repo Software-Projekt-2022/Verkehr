@@ -1,4 +1,4 @@
-CREATE DATABASE verkehr;
+USE verkehr;
 
 CREATE TABLE Lots (
 	LotID int NOT NULL AUTO_INCREMENT,
