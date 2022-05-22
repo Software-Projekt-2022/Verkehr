@@ -97,7 +97,7 @@ CREATE TABLE Fahrzeuge (
 	PRIMARY KEY (FahrzeugID)
 );
 
-CREATE TABLE Route (
+CREATE TABLE Routen (
 	RouteID INT NOT NULL AUTO_INCREMENT,
 	Route_name varchar(255),
 	Stopps INT,
