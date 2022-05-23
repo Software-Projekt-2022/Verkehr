@@ -165,7 +165,7 @@ FOREIGN KEY (La_BetriebID) REFERENCES Betreiber(BetriebID)
 
 ALTER Table Betreiber
 ADD CONSTRAINT fa_Be_AddresseID 
-FOREIGN KEY (Be_AddesseID) REFERENCES Addressen(AddresseID)
+FOREIGN KEY (Be_AddresseID) REFERENCES Addressen(AddresseID)
 	ON DELETE SET NULL
 	ON UPDATE SET NULL;
 
