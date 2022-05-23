@@ -52,7 +52,7 @@ CREATE TABLE Betreiber (
 
 CREATE TABLE Spritpreise (
 	SpritpreisID INT NOT NULL AUTO_INCREMENT,
-	S_preis FLOAT(4,3),
+	Sp_preis FLOAT(4,3),
 	Spritsorte varchar(255),
 	Sp_BetriebID INT DEFAULT NULL,
 	erzeugt_am DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -123,6 +123,24 @@ CREATE TABLE Routen_Haltestellen (
 	FOREIGN KEY (RH_StartID) REFERENCES Haltestellen(HaltestelleID),
 	FOREIGN KEY (RH_ZielID) REFERENCES Haltestellen(HaltestelleID)
 );
+
+ALTER TABLE Routen_Haltestellen
+ADD CONSTRAINT RH_RouteID 
+FOREIGN KEY (RH_RouteID) REFERENCES Routen(RouteID)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL;
+
+ALTER TABLE Routen_Haltestellen
+ADD CONSTRAINT RH_StartID 
+FOREIGN KEY (RH_StartID) REFERENCES Haltestellen(HaltestelleID)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL;
+
+ALTER TABLE Routen_Haltestellen
+ADD CONSTRAINT RH_ZielID 
+FOREIGN KEY (RH_ZielID) REFERENCES Haltestellen(HaltestelleID)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL;
 
 ALTER Table Lots 
 ADD CONSTRAINT fk_Lo_AddresseID 
