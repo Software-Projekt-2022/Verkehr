@@ -88,7 +88,7 @@ CREATE TABLE Fahrzeuge (
 	FahrzeugID INT NOT NULL AUTO_INCREMENT,
 	Fa_FahrerID INT DEFAULT NULL,
 	Modell varchar(255),
-	Baujahr DATE DEFAULT,
+	Baujahr DATE,
 	Letzte_wartung DATETIME,
 	Naechste_wartung DATETIME,
 	in_betrieb INT,
@@ -118,6 +118,7 @@ CREATE TABLE Routen_Haltestellen (
 	Anfahrt TIME,
 	Abfahrt TIME,
 	Fahrzeit TIME,
+	PRIMARY KEY (RH_RouteID, RH_StartID, RH_ZielID), 
 	FOREIGN KEY (RH_RouteID) REFERENCES Routen(RouteID),
 	FOREIGN KEY (RH_StartID) REFERENCES Haltestellen(HaltestelleID),
 	FOREIGN KEY (RH_ZielID) REFERENCES Haltestellen(HaltestelleID)
