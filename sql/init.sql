@@ -124,7 +124,7 @@ CREATE TABLE Routen_Haltestellen (
 	FOREIGN KEY (RH_ZielID) REFERENCES Haltestellen(HaltestelleID)
 );
 
-CREATE TABLE Lot_Plaetze (
+CREATE TABLE Lots_Plaetze (
 	LP_PlatzID INT NOT NULL,
 	LP_LotID INT NOT NULL,
 	PRIMARY KEY (LP_PlatzID, LP_LotID),
@@ -132,24 +132,6 @@ CREATE TABLE Lot_Plaetze (
 	FOREIGN KEY (LP_LotID) REFERENCES Lots(LotID)
 	
 );
-
-ALTER TABLE Routen_Haltestellen
-ADD CONSTRAINT RH_RouteID 
-FOREIGN KEY (RH_RouteID) REFERENCES Routen(RouteID)
-    ON DELETE SET NULL
-    ON UPDATE SET NULL;
-
-ALTER TABLE Routen_Haltestellen
-ADD CONSTRAINT RH_StartID 
-FOREIGN KEY (RH_StartID) REFERENCES Haltestellen(HaltestelleID)
-    ON DELETE SET NULL
-    ON UPDATE SET NULL;
-
-ALTER TABLE Routen_Haltestellen
-ADD CONSTRAINT RH_ZielID 
-FOREIGN KEY (RH_ZielID) REFERENCES Haltestellen(HaltestelleID)
-    ON DELETE SET NULL
-    ON UPDATE SET NULL;
 
 ALTER Table Lots 
 ADD CONSTRAINT fk_Lo_AddresseID 
