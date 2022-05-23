@@ -92,7 +92,7 @@ CREATE TABLE Fahrzeuge (
 	Letzte_wartung DATETIME,
 	Naechste_wartung DATETIME,
 	in_betrieb INT,
-	RouteID INT DEFAULT NULL,
+	Fa_RouteID INT DEFAULT NULL,
 	Fa_HaltestelleID INT DEFAULT NULL,
 	PRIMARY KEY (FahrzeugID)
 );
