@@ -3,10 +3,10 @@ const path = require('path');
 const app = express();
 const mysql = require("mysql");
 const mysql_connection = mysql.createConnection({
-    host: 'verkehrdb',
+    host: 'verkehrdb:3306',
     user: 'verkehr',
     password: 'verkehrpw12345',
-    database: 'test123'
+    database: 'verkehr'
 });
 
 const router = express.Router()
