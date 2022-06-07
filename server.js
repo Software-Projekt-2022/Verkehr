@@ -6,7 +6,7 @@ const io = require("socket.io")(server);
 
 const mysql = require('mysql');
 const mysql_connection = mysql.createConnection({
-    host: 'verkehrdb:3306',
+    host: 'verkehrdb',
     user: 'verkehr',
     password: 'verkehrpw12345',
     database: 'verkehr'
