@@ -18,13 +18,14 @@ mariadb_connection.connect(function(error){
         console.log("MySQL COULD NOT CONNECT");
         console.log(error);
     } else {
-        console.log("MySQL CONNECTED");
+        console.log("MySQL CONNECTED");*/
         // SERVER START
         server.listen(process.env.PORT || 3000, () => {
             console.log("Server started on Port 3000");
             });
         }
 });
+
 
 // ROUTES API REQUIRE
 app.use('/assets', express.static('assets')); // STYLE AND SCRIPT ROUTE
