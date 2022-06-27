@@ -1,9 +1,9 @@
-module.exports = function(io,socket,mariadb_connection) {
+module.exports = function(io,socket,mysql_connection) {
 
     // get Informations example
     socket.on('get users', function(callback){
         var sql = "SELECT * FROM SonderUser";
-         mariadb_connection.query(sql, function(err,result){
+         mysql_connection.query(sql, function(err,result){
             if (!err){
                  callback(result);
             } else {
@@ -13,8 +13,8 @@ module.exports = function(io,socket,mariadb_connection) {
     });
     // delete Information example
     socket.on('delete user', function(userID,callback){
-        var sql = "DELETE FROM testtabelle WHERE id=" + mariadb_connection.escape(userID);
-         mariadb_connection.query(sql, function(err,result){
+        var sql = "DELETE FROM testtabelle WHERE id=" + mysql_connection.escape(userID);
+         mysql_connection.query(sql, function(err,result){
             if (!err){
                  callback(true);
             } else {
@@ -27,11 +27,11 @@ module.exports = function(io,socket,mariadb_connection) {
     socket.on('get Plaetze', function(callback){
         var sql = "SELECT * FROM Plaetze";
         var platzdata;
-         mariadb_connection.query(sql, function(err,result){
+         mysql_connection.query(sql, function(err,result){
             if (!err){
                 if(result[0].Pl_LadesaeuleID != null){
-                    var sql = "SELECT L_Status FROM Ladesaeulen WHERE LadesaeuleID=" + mariadb_connection.escape(result[0].Pl_LadesaeuleID);
-                     mariadb_connection.query(sql, function(err,statres){
+                    var sql = "SELECT L_Status FROM Ladesaeulen WHERE LadesaeuleID=" + mysql_connection.escape(result[0].Pl_LadesaeuleID);
+                     mysql_connection.query(sql, function(err,statres){
                         if (!err){
                              platzdata.push(result);
                              platzdata.push(statres);
@@ -56,11 +56,11 @@ module.exports = function(io,socket,mariadb_connection) {
     socket.on('get Lots', function(callback){
         var sql = "SELECT * FROM Lots";
         var lotdata;
-         mariadb_connection.query(sql, function(err,result){
+         mysql_connection.query(sql, function(err,result){
             if (!err){
                 if(result[0].Lo_AddresseID != null){
-                    var sql = "SELECT * FROM Addressen WHERE AddresseID=" + mariadb_connection.escape(result[0].Lo_AddresseID);
-                     mariadb_connection.query(sql, function(err,statres){
+                    var sql = "SELECT * FROM Addressen WHERE AddresseID=" + mysql_connection.escape(result[0].Lo_AddresseID);
+                     mysql_connection.query(sql, function(err,statres){
                         if (!err){
                             // Used in upcoming iteration
                             /* if(result[0].LotID != null){
@@ -115,8 +115,8 @@ module.exports = function(io,socket,mariadb_connection) {
     });
     // get Informations from Ladesaeule in Database 
     socket.on('get LadesaeleInfo', function(LadesaeuleID,callback){
-        var sql = "SELECT L_Status FROM Ladesaeulen WHERE id=" + mariadb_connection.escape(LadesaeuleID);
-         mariadb_connection.query(sql, function(err,result){
+        var sql = "SELECT L_Status FROM Ladesaeulen WHERE id=" + mysql_connection.escape(LadesaeuleID);
+         mysql_connection.query(sql, function(err,result){
             if(!err){
                  callback(true);
             } else {
@@ -129,11 +129,11 @@ module.exports = function(io,socket,mariadb_connection) {
     socket.on('get Plaetze', function(callback){
         var sql = "SELECT * FROM Plaetze";
         var platzdata;
-         mariadb_connection.query(sql, function(err,result){
+         mysql_connection.query(sql, function(err,result){
             if (!err){
                 if(result[0].Pl_LadesaeuleID != null){
-                    var sql = "SELECT L_Status FROM Ladesaeulen WHERE LadesaeuleID=" + mariadb_connection.escape(result[0].Pl_LadesaeuleID);
-                     mariadb_connection.query(sql, function(err,statres){
+                    var sql = "SELECT L_Status FROM Ladesaeulen WHERE LadesaeuleID=" + mysql_connection.escape(result[0].Pl_LadesaeuleID);
+                     mysql_connection.query(sql, function(err,statres){
                         if (!err){
                              platzdata.push(result);
                              platzdata.push(statres);
@@ -158,11 +158,11 @@ module.exports = function(io,socket,mariadb_connection) {
     socket.on('get News', function(callback){
         var sql = "SELECT * FROM Neuigkeiten";
         var newsdata;
-         mariadb_connection.query(sql, function(err,result){
+         mysql_connection.query(sql, function(err,result){
             if (!err){
                 if(result[0].Ne_AddresseID != null){
-                    var sql = "SELECT * FROM Addressen WHERE AddresseID=" + mariadb_connection.escape(result[0].Ne_AddresseID);
-                     mariadb_connection.query(sql, function(err,statres){
+                    var sql = "SELECT * FROM Addressen WHERE AddresseID=" + mysql_connection.escape(result[0].Ne_AddresseID);
+                     mysql_connection.query(sql, function(err,statres){
                         if (!err){
                              newsdata.push(result);
                              lotdata.push(statres);
