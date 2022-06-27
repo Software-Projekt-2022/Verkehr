@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>Cyber City Verkehr</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div class="sidenav">
+        <div class="picture">
+            <img src="/assets/images/cyber-city-logo.png" alt="" class="img-responsive">
+        </div>
+        <a href="/assets/html/index.html">Verkehr</a>
+        <a href="/assets/html/pages/parken.html">Parken</a>
+        <a href="/assets/html/pages/neuigkeiten.html">Neuigkeiten</a>
+    </div>
+    
+    <div class="header">
+        <h1>Neuigkeiten</h1>
+        <hr>
+        <a href="/assets/html/pages/melder.html">Ereignis melden</a>
+    <div>
+    <hr>
+    <div class="main">
+        <!-- Table for News -->
+        <div style="overflow-x:auto;" style="overflow-y:auto;">
+            <table class="table" id="neuigkeiten">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="3">Addresse</th>
+                        <th scope="col">Meldezeit</th>
+                        <th scope="col">Art</th>
+                        <th scope="col">Beschreibung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="Addressen in neuigkeiten">   
+                        <th scope="row">{{Addressen.Strasse}</th>
+                        <th scope="row">{{Addressen.Hausnummer}}</th>
+                        <th scope="row">{{Addressen.Plz}}</th>   
+                    </tr>
+                    <tr v-for="Neuigkeiten in neuigkeiten">    
+                        <th scope="row">{{Neuigkeiten.Meldezeit}}</th>
+                        <th scope="row">{{Neuigkeiten.Art}}</th>
+                        <th scope="row">{{Neuigkeiten.Beschreibung}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="footer">
+        <nav>
+            <ul>
+                <li>
+                    <a href="/assets/html/pages/impressum.html">
+                        Impressum
+                    </a>
+                </li>
+                <li>
+                    <a href="http://cyber-city.systems">
+                        Cyber City
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <p>
+            &copy; Cyber City Projekt             
+        </p>
+        <hr>
+        <p>
+            <a href="">
+                FH-Bielefeld
+            </a>
+        </p>
+    </div>
+
+    <script src="/assets/scripts/neuigkeiten.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
