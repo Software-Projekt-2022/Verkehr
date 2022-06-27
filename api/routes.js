@@ -1,9 +1,9 @@
 const express = require('express')
 const path = require('path');
 const app = express();
-const mariadb = require("mariadb");
+const mysql = require("mysql");
 
-const mariadb_connection = mariadb.createConnection({
+const mysql_connection = mysql.createConnection({
     host: 'verkehrdb',
     user: 'root',
     password: '',
