@@ -57,13 +57,6 @@ const first_panel_vue = new Vue({
                 first_panel_vue.parkplaetze = plaetze;
             });
         },
-        deleteUser: function(id){
-            socket.emit('delete user', id, function(callback){
-                if (callback == true){
-                    first_panel_vue.getUsers(); 
-                }
-            });
-        }
     }
 })
 
