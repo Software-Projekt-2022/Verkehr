@@ -20,11 +20,37 @@
     </div>
     
     <div class="header">
-        <h1>Verkehr</h1>
+        <h1>Neuigkeiten</h1>
+        <hr>
+        <a href="/assets/html/pages/melder.html">Ereignis melden</a>
     <div>
     <hr>
     <div class="main">
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla faci</p>
+        <!-- Table for News -->
+        <div style="overflow-x:auto;" style="overflow-y:auto;">
+            <table class="table" id="neuigkeiten">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="3">Addresse</th>
+                        <th scope="col">Meldezeit</th>
+                        <th scope="col">Art</th>
+                        <th scope="col">Beschreibung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="Addressen in neuigkeiten">   
+                        <th scope="row">{{Addressen.Strasse}</th>
+                        <th scope="row">{{Addressen.Hausnummer}}</th>
+                        <th scope="row">{{Addressen.Plz}}</th>   
+                    </tr>
+                    <tr v-for="Neuigkeiten in neuigkeiten">    
+                        <th scope="row">{{Neuigkeiten.Meldezeit}}</th>
+                        <th scope="row">{{Neuigkeiten.Art}}</th>
+                        <th scope="row">{{Neuigkeiten.Beschreibung}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <hr>
     <div class="footer">
@@ -53,7 +79,7 @@
         </p>
     </div>
 
-    <script src="/assets/scripts/index.js"></script>
+    <script src="/assets/scripts/neuigkeiten.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

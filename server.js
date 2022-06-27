@@ -4,16 +4,16 @@ const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
-const mysql = require('mysql');
-const mysql_connection = mysql.createConnection({
-    host: 'verkehrdb:3306',
+const mariadb = require('mariadb');
+const mariadb_connection = mariadb.createConnection({
+    host: 'verkehrdb',
     user: 'verkehr',
     password: 'verkehrpw12345',
     database: 'verkehr'
 });
 
-// CONNECT TO MYSQL
-/*mysql_connection.connect(function(error){
+// CONNECT TO MariaDB
+mariadb_connection.connect(function(error){
     if (!!error){
         console.log("MySQL COULD NOT CONNECT");
         console.log(error);
@@ -21,10 +21,11 @@ const mysql_connection = mysql.createConnection({
         console.log("MySQL CONNECTED");*/
         // SERVER START
         server.listen(process.env.PORT || 3000, () => {
-        console.log("Server started on Port 3000");
-        });
-   // }
-//});
+            console.log("Server started on Port 3000");
+            });
+        }
+});
+
 
 // ROUTES API REQUIRE
 app.use('/assets', express.static('assets')); // STYLE AND SCRIPT ROUTE
@@ -48,7 +49,7 @@ io.on('connection', function(socket){
 
 
     // MODULES
-    require('./api/usermanager.js')(io,socket,mysql_connection);
+    require('./api/usermanager.js')(io,socket,mariadb_connection);
 
 
 });

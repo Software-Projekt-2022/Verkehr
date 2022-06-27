@@ -1,11 +1,12 @@
 const express = require('express')
 const path = require('path');
 const app = express();
-const mysql = require("mysql");
-const mysql_connection = mysql.createConnection({
-    host: 'verkehrdb:3306',
-    user: 'verkehr',
-    password: 'verkehrpw12345',
+const mariadb = require("mariadb");
+
+const mariadb_connection = mariadb.createConnection({
+    host: 'verkehrdb',
+    user: 'root',
+    password: '',
     database: 'verkehr'
 });
 
@@ -17,6 +18,7 @@ const Auth = (req,res,next) => {
     // next() wenn bestanden
 
     next();
+    //else {res.redirect('https://cyber-city.systems/login?target=https://cyber-city.systems/')};
 }
 
 

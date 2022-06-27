@@ -20,12 +20,32 @@
     </div>
     
     <div class="header">
-        <h1>Verkehr</h1>
-    <div>
+        <h1>Neuigkeit melden</h1>      
+    </div>
     <hr>
     <div class="main">
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla faci</p>
+        <div>
+            <form id="meldeinfo" @submit.prevent="handleEvent">
+                <div class="toggle-buttons">
+                    <input type="radio" id="Unfall" name="Unfall" value="0" v-model="meldeType">
+                    <input type="radio" id="Baustelle" name="Baustelle" value="1" v-model="meldeType">
+                </div>
+                <label for="Hausnummer">Hausnummer: </label>
+                <input type="text" id="Hausnummer" maxlength="3">
+                <label for="Strasse">Strasse: </label>
+                <input type="text" id="Strasse" maxlength="30">
+                <label for="Plz">Postleitzahl: </label>
+                <input type="text" id="Plz" maxlength="10">
+                <label for="Zeitpunkt">Zeitpunkt (Datum und Uhrzeit):</label>
+                <input type="datetime-local" id="Zeitpunkt">
+                <input type="text" id="Beschreibung" maxlength="255">
+                <div class="submit">
+                    <button type="button">Senden</button>
+                </div>
+            </form>
+        </div>
     </div>
+
     <hr>
     <div class="footer">
         <nav>
@@ -53,7 +73,7 @@
         </p>
     </div>
 
-    <script src="/assets/scripts/index.js"></script>
+    <script src="/assets/scripts/melder.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
