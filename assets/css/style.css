@@ -1,6 +1,17 @@
+@font-face{
+    font-family: roboto;
+    src: url(./fonts/roboto.regular.ttf);
+}
+@font-face {
+    font-family: oswald;
+    src: url(./fonts/oswald.regular.ttf);
+}
+
 body{
-    background: #102542;
-    color: #F7FFF7;
+    background: #F7FFF7;
+    color: #F87060;
+    border-radius: 25px;
+    font-family: roboto;
 }
 
 table {
@@ -20,8 +31,8 @@ button{
 
 /* The sidebar menu */
 .sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 17%; /* Set the width of the sidebar */
+    height: 100%;/* height: 100%; */ /* Full-height: remove this if you want "auto" height */
+    width: 15%; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -32,14 +43,17 @@ button{
   }
 
 .sidenav .picture{
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 15%;
+    max-height: 15%;
 }
-  
+
 /* The navigation menu links */
 .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
+    font-family: oswald;
     font-size: 25px;
     color: #F7FFF7;
     display: block;
@@ -52,21 +66,48 @@ button{
 
 /* Style page content */
 .header{
-    margin-left: 17%; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     padding: 0px 10px;
     background-color: #292929;
     color: #F7FFF7;
+    font-family: oswald;
 }
+
 .main {
-    margin-left: 17%; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     padding: 0px 10px;
     background-color: #292929;
     color: #F7FFF7;
+    font-family: roboto;
+    
+}
+
+.main .toggle-buttons input[type="radio"]{
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.main .toggle-buttons label{
+    border: 1px solid #102542;
+    border-radius: 0.5em;
+    padding: 0.5em;
+}
+
+.main .toggle-buttons input:checked + label{
+    background: #292929;
+    color: #F87060;
+    box-shadow: none;
 }
 
 .footer {
-    margin-left: 17%; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     padding: 0px 10px;
     background-color: #292929;
     color: #F7FFF7;
+    font-family: roboto;
 }
