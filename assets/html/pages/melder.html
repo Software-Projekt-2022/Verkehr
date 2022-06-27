@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>Cyber City Verkehr</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div class="sidenav">
+        <div class="picture">
+            <img src="/assets/images/cyber-city-logo.png" alt="" class="img-responsive">
+        </div>
+        <a href="/assets/html/index.html">Verkehr</a>
+        <a href="/assets/html/pages/parken.html">Parken</a>
+        <a href="/assets/html/pages/neuigkeiten.html">Neuigkeiten</a>
+    </div>
+    
+    <div class="header">
+        <h1>Neuigkeit melden</h1>      
+    </div>
+    <hr>
+    <div class="main">
+        <div>
+            <form id="meldeinfo" @submit.prevent="handleEvent">
+                <div class="toggle-buttons">
+                    <input type="radio" id="Unfall" name="Unfall" value="0" v-model="meldeType">
+                    <input type="radio" id="Baustelle" name="Baustelle" value="1" v-model="meldeType">
+                </div>
+                <label for="Hausnummer">Hausnummer: </label>
+                <input type="text" id="Hausnummer" maxlength="3">
+                <label for="Strasse">Strasse: </label>
+                <input type="text" id="Strasse" maxlength="30">
+                <label for="Plz">Postleitzahl: </label>
+                <input type="text" id="Plz" maxlength="10">
+                <label for="Zeitpunkt">Zeitpunkt (Datum und Uhrzeit):</label>
+                <input type="datetime-local" id="Zeitpunkt">
+                <input type="text" id="Beschreibung" maxlength="255">
+                <div class="submit">
+                    <button type="button">Senden</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+    <div class="footer">
+        <nav>
+            <ul>
+                <li>
+                    <a href="/assets/html/pages/impressum.html">
+                        Impressum
+                    </a>
+                </li>
+                <li>
+                    <a href="http://cyber-city.systems">
+                        Cyber City
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <p>
+            &copy; Cyber City Projekt             
+        </p>
+        <hr>
+        <p>
+            <a href="">
+                FH-Bielefeld
+            </a>
+        </p>
+    </div>
+
+    <script src="/assets/scripts/melder.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
