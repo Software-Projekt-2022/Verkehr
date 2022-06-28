@@ -10,15 +10,34 @@ const mysql_connection = mysql.createConnection({
     database: 'verkehr'
 });
 
-const router = express.Router()
+const router = express.Router();
 
+//const validURL = "https://auth.cyber-city.systems/api";
+//const sendToLogin = "https://cyber-city.systems/login?target=https://cyber-city.systems/";
 
-const Auth = (req,res,next) => {
-    // TOKEN CHECK
-    // next() wenn bestanden
-
-    next();
-    //else {res.redirect('https://cyber-city.systems/login?target=https://cyber-city.systems/')};
+const Auth = async (req,res,next) => {
+    /*/ TOKEN CHECK
+    var cookie = req.headers.cookie;
+    if(cookie != null){
+        const config = {
+            headers: {
+                'Authorization': cookie
+            }
+        };
+        const https = require('https');
+        try {
+            await https.request(`${validURL}/validate_token`, config).then((data) => {
+                if(data.status == 200){ */
+                next();
+                /*} else {res.redirect(sendToLogin)};
+            })
+        }
+        catch (err){
+            console.log(err);
+            res.redirect(sendToLogin);
+        }
+    } else {res.redirect(sendToLogin);
+    };*/
 }
 
 

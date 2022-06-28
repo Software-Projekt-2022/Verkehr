@@ -45,8 +45,8 @@ button{
 .sidenav .img-responsive{
     width: auto;
     height: auto;
-    max-width: 15%;
-    max-height: 15%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 /* The navigation menu links */
@@ -74,11 +74,7 @@ button{
 }
 
 .header a {
-    border: 1px solid #102542;
-    border-radius: 0.5em;
-    padding: 0.5em;
     color: #F87060;
-    box-shadow: none;
 }
 
 .main {
@@ -88,16 +84,6 @@ button{
     color: #F7FFF7;
     font-family: roboto;
     
-}
-
-.main .toggle-buttons input[type="radio"]{
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
 }
 
 .main .toggle-buttons label{
@@ -121,9 +107,5 @@ button{
 }
 
 .footer a {
-    border: 1px solid #102542;
-    border-radius: 0.5em;
-    padding: 0.5em;
     color: #F87060;
-    box-shadow: none;
 }
