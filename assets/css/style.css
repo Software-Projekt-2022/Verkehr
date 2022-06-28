@@ -42,7 +42,7 @@ button{
     padding-top: 20px;
   }
 
-.sidenav .picture{
+.sidenav .img-responsive{
     width: auto;
     height: auto;
     max-width: 15%;
@@ -71,6 +71,14 @@ button{
     background-color: #292929;
     color: #F7FFF7;
     font-family: oswald;
+}
+
+.header a {
+    border: 1px solid #102542;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    color: #F87060;
+    box-shadow: none;
 }
 
 .main {
@@ -110,4 +118,12 @@ button{
     background-color: #292929;
     color: #F7FFF7;
     font-family: roboto;
+}
+
+.footer a {
+    border: 1px solid #102542;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    color: #F87060;
+    box-shadow: none;
 }
